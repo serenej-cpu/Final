@@ -322,14 +322,14 @@ main {
 
 .year {
     font-size: 0.95rem;
-    color: var(--gray-600);
+    color: var(--black);
     margin-bottom: 4px;
     transition: color 0.5s ease;
 }
 
 .location {
     font-size: 0.9rem;
-    color: var(--gray-600);
+    color: var(--black);
     font-style: italic;
     margin-bottom: 8px;
     transition: color 0.5s ease;
