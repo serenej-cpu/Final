@@ -1,0 +1,684 @@
+@charset "utf-8";
+
+/* Import Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* CSS Reset */
+html, body, div, p, span, strong, b, em, iframe, pre, 
+h1, h2, h3, h4, h5, h6, 
+img, dl, dt, dd, fieldset, form, legend, label, 
+table, caption, thead, tbody, tfoot, tr, th, td, 
+ul, ol, li, a, input, select, textarea {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+}
+
+*, html {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+/* Color Palette - Grayscale */
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --gray-100: #0a0a0a;
+    --gray-200: #1a1a1a;
+    --gray-300: #2a2a2a;
+    --gray-400: #3a3a3a;
+    --gray-500: #505050;
+    --gray-600: #707070;
+    --gray-700: #909090;
+    --gray-800: #c0c0c0;
+    --gray-900: #e0e0e0;
+    --gray-950: #f5f5f5;
+}
+
+/* Base Styles */
+html {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--gray-200);
+    line-height: 1.6;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Skip to Main Content Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--gray-200);
+    color: var(--white);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--gray-950);
+    padding: 60px 20px 40px;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.portrait {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-100);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--gray-500);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.contact-info {
+    font-size: 0.95rem;
+    color: var(--black);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.contact-info .separator {
+    margin: 0 8px;
+    color: var(--black);
+}
+
+.contact-info a {
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover,
+.contact-info a:focus {
+    color: var(--gray-100);
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.intro-text {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: var(--gray-950);
+    border-left: 4px solid var(--gray-300);
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+/* Content Sections */
+.content-section {
+    margin-bottom: 80px;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-100);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+/* Section Container - Interactive Toggle */
+.section-container {
+    position: relative;
+    min-height: 400px;
+    background-color: var(--gray-950);
+    padding: 0;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease, height 0.6s ease, background-color 0.5s ease;
+}
+
+/* Hover effect only for CV layer */
+.section-container:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    background-color: #202026;
+}
+
+/* Keep container dark when personal layer is active */
+.section-container:has(.personal-layer.active) {
+    background-color: #202026;
+}
+
+/* No hover effect when personal layer is active */
+.section-container:has(.personal-layer.active):hover {
+    background-color: #202026;
+    box-shadow: none;
+}
+
+.section-container:focus {
+    outline: none;
+}
+
+.section-container:focus-visible {
+    outline: 3px solid #3E3EFF;
+    outline-offset: 2px;
+}
+
+/* Reverse ALL colors on hover for CV layer ONLY */
+.section-container:hover .cv-layer.active h3 {
+    color: var(--white);
+    transition: color 0.5s ease;
+}
+
+.section-container:hover .cv-layer.active .degree,
+.section-container:hover .cv-layer.active .company {
+    color: var(--gray-900);
+    transition: color 0.5s ease;
+}
+
+.section-container:hover .cv-layer.active .year,
+.section-container:hover .cv-layer.active .location {
+    color: var(--gray-800);
+    transition: color 0.5s ease;
+}
+
+.section-container:hover .cv-layer.active .description,
+.section-container:hover .cv-layer.active p,
+.section-container:hover .cv-layer.active li {
+    color: var(--gray-800);
+    transition: color 0.5s ease;
+}
+
+/* Reverse border colors on hover */
+.section-container:hover .cv-layer.active .education-item,
+.section-container:hover .cv-layer.active .project-item,
+.section-container:hover .cv-layer.active .hobby-item {
+    border-bottom-color: var(--gray-700);
+    transition: border-color 0.5s ease;
+}
+
+/* Add question marks after h3 on hover - CV layer only */
+.section-container:hover .cv-layer.active h3::after {
+    content: "?";
+    opacity: 1;
+}
+
+.cv-layer.active h3::after {
+    content: "?";
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Layer Styles */
+.cv-layer,
+.personal-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 20px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.cv-layer.active,
+.personal-layer.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Personal Layer - Always dark background with white text */
+.personal-layer.active {
+    background-color: #202026;
+}
+
+.personal-layer.active .personal-content h3 {
+    color: var(--white);
+}
+
+.personal-layer.active .personal-content p {
+    color: var(--gray-800);
+}
+
+.personal-layer.active .personal-content strong {
+    color: var(--gray-900);
+}
+
+/* CV Content Styles */
+.cv-content {
+    display: grid;
+    gap: 30px;
+}
+
+/* Education Items */
+.education-item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-800);
+    transition: border-color 0.5s ease;
+}
+
+.education-item:last-child {
+    border-bottom: none;
+}
+
+.education-item h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-200);
+    margin-bottom: 8px;
+    transition: color 0.5s ease;
+}
+
+.degree {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+    transition: color 0.5s ease;
+}
+
+.year {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    margin-bottom: 4px;
+    transition: color 0.5s ease;
+}
+
+.location {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    font-style: italic;
+    margin-bottom: 8px;
+    transition: color 0.5s ease;
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--gray-500);
+    line-height: 1.6;
+    transition: color 0.5s ease;
+}
+
+/* Project Items */
+.project-item {
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--gray-800);
+    transition: border-color 0.5s ease;
+}
+
+.project-item:last-child {
+    border-bottom: none;
+}
+
+.project-item h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gray-200);
+    margin-bottom: 6px;
+    transition: color 0.5s ease;
+}
+
+.company {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+    transition: color 0.5s ease;
+}
+
+.project-item .description {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    font-style: italic;
+    margin-bottom: 8px;
+    transition: color 0.5s ease;
+}
+
+.project-item ul {
+    margin-top: 12px;
+    padding-left: 24px;
+}
+
+.project-item li {
+    font-size: 0.95rem;
+    color: var(--gray-500);
+    line-height: 1.7;
+    margin-bottom: 8px;
+    list-style-type: circle;
+    transition: color 0.5s ease;
+}
+
+/* Hobby Items */
+.hobby-item {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gray-800);
+    transition: border-color 0.5s ease;
+}
+
+.hobby-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.hobby-item h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gray-200);
+    margin-bottom: 10px;
+    transition: color 0.5s ease;
+}
+
+.hobby-item p {
+    font-size: 1rem;
+    color: var(--gray-500);
+    line-height: 1.7;
+    transition: color 0.5s ease;
+}
+
+/* Personal Content Styles */
+.personal-content {
+    display: grid;
+    gap: 20px;
+}
+
+.personal-content h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gray-200);
+    margin-bottom: 10px;
+}
+
+.personal-content p {
+    font-size: 1.05rem;
+    color: var(--gray-400);
+    line-height: 1.8;
+}
+
+.personal-content strong {
+    font-weight: 700;
+    color: var(--gray-300);
+}
+
+/* Footer */
+footer {
+    background-color: var(--gray-950);
+    border-top: 2px solid var(--gray-200);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer .contact-info {
+    font-size: 0.95rem;
+    color: var(--black);
+    margin-bottom: 0;
+}
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .header-content {
+        grid-template-columns: 120px 1fr;
+        gap: 25px;
+    }
+
+    .portrait {
+        width: 120px;
+        height: 120px;
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .contact-info {
+        font-size: 0.9rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.75rem;
+    }
+
+    .section-container {
+        padding: 30px;
+    }
+
+    .cv-layer,
+    .personal-layer {
+        padding: 30px;
+    }
+
+    /* Disable hover effects on tablet */
+    .section-container:hover {
+        box-shadow: none;
+        background-color: var(--gray-950);
+    }
+
+    /* But keep personal layer dark on tablet */
+    .section-container:has(.personal-layer.active) {
+        background-color: #202026;
+    }
+
+    .section-container:hover .cv-layer.active h3,
+    .section-container:hover .cv-layer.active .degree,
+    .section-container:hover .cv-layer.active .company,
+    .section-container:hover .cv-layer.active .year,
+    .section-container:hover .cv-layer.active .description,
+    .section-container:hover .cv-layer.active p,
+    .section-container:hover .cv-layer.active li {
+        color: inherit;
+    }
+
+    .section-container:hover .cv-layer.active h3::after {
+        opacity: 0;
+    }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+    header {
+        padding: 40px 20px 30px;
+    }
+
+    .header-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .portrait {
+        width: 100px;
+        height: 100px;
+    }
+
+    .header-text h1 {
+        font-size: 1.75rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .contact-info {
+        font-size: 0.85rem;
+        line-height: 1.8;
+    }
+
+    .contact-info .separator {
+        margin: 0 6px;
+    }
+
+    main {
+        padding: 30px 15px;
+    }
+
+    .intro-text {
+        margin-bottom: 40px;
+        padding: 15px;
+    }
+
+    .intro-text p {
+        font-size: 1rem;
+    }
+
+    .content-section {
+        margin-bottom: 60px;
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .section-container {
+        min-height: 300px;
+        padding: 25px;
+    }
+
+    .cv-layer,
+    .personal-layer {
+        padding: 25px;
+    }
+
+    /* Hide hover effects on mobile */
+    .section-container:hover {
+        box-shadow: none;
+        background-color: var(--gray-950);
+    }
+
+    /* But keep personal layer dark on mobile */
+    .section-container:has(.personal-layer.active) {
+        background-color: #202026;
+    }
+
+    .section-container:hover .cv-layer.active h3,
+    .section-container:hover .cv-layer.active .degree,
+    .section-container:hover .cv-layer.active .company,
+    .section-container:hover .cv-layer.active .year,
+    .section-container:hover .cv-layer.active .description,
+    .section-container:hover .cv-layer.active p,
+    .section-container:hover .cv-layer.active li {
+        color: inherit;
+    }
+
+    .section-container:hover .cv-layer.active h3::after {
+        opacity: 0;
+    }
+
+    .education-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .degree {
+        font-size: 1rem;
+    }
+
+    .project-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .company {
+        font-size: 0.95rem;
+    }
+
+    .project-item li {
+        font-size: 0.9rem;
+    }
+
+    .hobby-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .personal-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .personal-content p {
+        font-size: 1rem;
+    }
+
+    footer {
+        padding: 30px 15px;
+    }
+
+    footer .contact-info {
+        font-size: 0.85rem;
+        line-height: 1.8;
+    }
+}
+
+/* Focus States for Accessibility */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #3E3EFF;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .skip-link {
+        display: none;
+    }
+
+    .personal-layer {
+        display: none;
+    }
+
+    .cv-layer {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+    }
+}
